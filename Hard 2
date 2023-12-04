@@ -1,0 +1,18 @@
+#HARD 2
+#Solution discription:
+#created a reversed string 'p'. Then, iterated over the length of 's' and check if the inital 'n-i' characters of 's' are same as the last 'n-i' characters of 'p'. 
+#If they are equal, loop breaks as we've found a palindrome. Else, the last character is added to a string, which is eventually added to the original string 's'.
+
+class Solution:
+    def shortestPalindrome(self, s: str) -> str:
+        p = s[::-1]
+        add = ""
+        n = len(s)
+        for i in range (n):
+            a = s[0:n-i]
+            b = p[i:]
+            if (a!=b):
+                add+=a[-1]
+            else:
+                break
+        return add+s
