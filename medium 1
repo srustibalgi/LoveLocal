@@ -1,0 +1,18 @@
+#MEDIUM 1
+#Solution discription:
+#If root.val > large then both node p and q belong to the left subtree, go to left by root = root.left.
+#If root.val < small then both node p and q belong to the right subtree, go to right by root = root.right.
+#If small <= root.val <= large the current root is the LCA between q and p.
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        small = min(p.val, q.val)
+        large = max(p.val, q.val)
+        while root:
+            if root.val > large:  # p, q belong to the left subtree
+                root = root.left
+            elif root.val < small:  # p, q belong to the right subtree
+                root = root.right
+            else:  # Now, small <= root.val <= large -> This is the LCA between p and q
+                return root
+        return None
